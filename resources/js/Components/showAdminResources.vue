@@ -91,6 +91,7 @@
                     dark:text-blue-500
                     hover:underline
                   "
+                  @click="resourceToDelete = resource.id"
                   >Delete</a
                 >
               </td>
@@ -121,14 +122,18 @@
       v-on:resourceCreated="resourceCreated()"
     />
 
-    <ShowEditResource v-if="showEditResource" :resource="selectedResource" />
-    <Modal> </Modal>
+    <ShowDeleteResource
+      v-if="resourceToDelete"
+      :id="resourceToDelete"
+      v-on:closeModal="resourceToDelete = null"
+    />
   </div>
 </template>
 
 <script>
 import LaravelVuePagination from "laravel-vue-pagination";
 import ShowAddResource from "./Resource/AddResource.vue";
+import ShowDeleteResource from "./Resource/DeleteResource.vue";
 import ResourceTile from "./Resource/ResourceTile.vue";
 
 export default {
@@ -139,13 +144,13 @@ export default {
     ShowAddResource,
     ResourceTile,
     Pagination: LaravelVuePagination,
-  
+    ShowDeleteResource,
   },
   data() {
     return {
       showAddResource: false,
       showEditResource: false,
-      selectedResource: null,
+
       resources: {},
       resourceToDelete: null,
     };

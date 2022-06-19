@@ -74,7 +74,7 @@
     <Success
       v-if="success"
       :successMessage="'Pdf resource created..'"
-      v-on:resourceCreated="$emit('resourceCreated')"
+      v-on:success="$emit('resourceCreated')"
     />
   </div>
 </template>

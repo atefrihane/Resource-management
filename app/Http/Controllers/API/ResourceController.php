@@ -82,4 +82,20 @@ class ResourceController extends Controller
             'status' => true
         ], 200);
     }
+
+    public function handleDeleteResource($id)
+    {
+        $checkResource = Resource::find($id);
+        if (!$checkResource) {
+            return response()->json([
+                'status' => false
+            ], 404);
+        }
+
+        $checkResource->type()->delete();
+        $checkResource->delete();
+        return response()->json([
+            'status' => true
+        ], 200);
+    }
 }

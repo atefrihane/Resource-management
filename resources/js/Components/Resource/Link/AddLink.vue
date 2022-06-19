@@ -101,7 +101,7 @@
     <Success
       v-if="success"
       :successMessage="'Link resource created..'"
-      v-on:resourceCreated="$emit('resourceCreated')"
+      v-on:success="$emit('resourceCreated')"
     />
   </div>
 </template>

@@ -71,7 +71,7 @@
               text-center
               mr-2
             "
-            @click="$emit('resourceCreated')"
+            @click="$emit('success')"
           >
             OK
           </button>
