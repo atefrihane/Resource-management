@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ResourceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/resources', [ResourceController::class, 'handleGetResources']);
+
+Route::post('/resource/html/save', [ResourceController::class, 'handleSaveHtml']);
+Route::post('/resource/pdf/save', [ResourceController::class, 'handleSavePdf']);
+Route::post('/resource/link/save', [ResourceController::class, 'handleSaveLink']);
+
+Route::delete('/resource/{id}}/delete', [ResourceController::class, 'handleDeleteResource']);

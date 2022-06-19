@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Resource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,3 @@ Route::get('/', function () {
 });
 Route::view('/home', 'resource.showVisitorResources');
 Route::view('/admin', 'resource.showAdminResources');
-

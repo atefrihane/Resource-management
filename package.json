@@ -31,6 +31,7 @@
         "vue-loader": "^17.0.0"
     },
     "dependencies": {
-        "flowbite": "^1.4.7"
+        "flowbite": "^1.4.7",
+        "laravel-vue-pagination": "^3.0.0"
     }
 }

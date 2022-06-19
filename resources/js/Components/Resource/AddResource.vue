@@ -87,32 +87,25 @@
               v-model="type"
             >
               <option value="">Select resource type</option>
-              <option value="">HTML</option>
-              <option value="">PDF</option>
-              <option value="">Link</option>
+              <option value="html">HTML</option>
+              <option value="pdf">PDF</option>
+              <option value="link">Link</option>
             </select>
           </div>
-          <div class="flex justify-center">
-  <button
-            type="button"
-            class="
-              text-white
-              bg-blue-700
-              hover:bg-blue-800
-              focus:ring-4 focus:outline-none focus:ring-blue-300
-              font-medium
-              rounded-lg
-              text-sm
-              px-5
-              py-2.5
-              text-center
-              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-            "
-          >
-            Confirm
-          </button>
-          </div>
-        
+          <AddHtml
+            v-if="type == 'html'"
+            v-on:resourceCreated="$emit('resourceCreated')"
+          />
+
+          <AddLink
+            v-if="type == 'link'"
+            v-on:resourceCreated="$emit('resourceCreated')"
+          />
+
+          <AddPdf
+            v-if="type == 'pdf'"
+            v-on:resourceCreated="$emit('resourceCreated')"
+          />
         </div>
       </div>
     </div>

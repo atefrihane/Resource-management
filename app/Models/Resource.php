@@ -13,6 +13,6 @@ class Resource extends Model
 
     public function type()
     {
-        return $this->morphTo('typable', 'resource_id', 'resource_type');
+        return $this->morphTo('type', 'resource_type', 'resource_id');
     }
 }
