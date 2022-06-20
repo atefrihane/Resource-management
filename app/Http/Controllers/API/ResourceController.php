@@ -96,7 +96,7 @@ class ResourceController extends Controller
                 'status' => false
             ], 404);
         }
-
+        $checkResource->isPdf() ? File::delete(public_path('files/' . $checkResource->type->file)) : "";
         $checkResource->type()->delete();
         $checkResource->delete();
         return response()->json([
@@ -187,7 +187,7 @@ class ResourceController extends Controller
             ], 422);
         }
         $path = public_path('files/' . $checkResource->type->file);
-       
+
         return response()->download($path);
     }
 }
