@@ -1,7 +1,7 @@
 <template>
   <div class="container md:mx-auto md:px-20 md:py-20">
     <h1 class="text-3xl font-bold underline text-center mb-3">
-      Resource Management
+      Resources List
     </h1>
 
   

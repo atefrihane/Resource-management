@@ -22377,7 +22377,7 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-3xl font-bold underline text-center mb-3"
-}, " Resource Management ", -1
+}, " Resources List ", -1
 /* HOISTED */
 );
 
