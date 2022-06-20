@@ -109,13 +109,7 @@
       ></pagination>
     </div>
 
-    <!-- <div class="py-20">
-      <div class="flex flex-wrap justify-center">
-        <template v-for="(resource, key) in resources.data" :key="key">
-          <ResourceTile :resource="resource" />
-        </template>
-      </div>
-    </div> -->
+  
 
     <ShowAddResource
       v-if="showAddResource"
@@ -134,6 +128,7 @@
       v-if="resourceToDelete"
       :id="resourceToDelete"
       v-on:closeModal="resourceToDelete = null"
+      v-on:resourceDeleted="resourceDeleted()"
     />
   </div>
 </template>
@@ -146,6 +141,7 @@ import ShowDeleteResource from "./Resource/DeleteResource.vue";
 import ResourceTile from "./Resource/ResourceTile.vue";
 
 export default {
+  
   mounted() {
     this.fetchResources();
   },
@@ -185,8 +181,12 @@ export default {
     },
 
     resourceUpdated() {
-     
       this.resourceToUpdate = null;
+      this.fetchResources();
+    },
+
+    resourceDeleted() {
+      this.resourceToDelete = null;
       this.fetchResources();
     },
 

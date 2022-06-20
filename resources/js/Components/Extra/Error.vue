@@ -88,6 +88,8 @@
 <script>
 import Modal from "../Extra/Modal.vue";
 export default {
+  emits: ["closeModal"],
+
   props: ["errors"],
   components: {
     Modal,

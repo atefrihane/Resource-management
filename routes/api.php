@@ -26,3 +26,5 @@ Route::post('/resource/pdf/{id}/update', [ResourceController::class, 'handleUpda
 Route::put('/resource/link/{id}/update', [ResourceController::class, 'handleUpdateLink']);
 
 Route::delete('/resource/{id}/delete', [ResourceController::class, 'handleDeleteResource']);
+
+Route::get('/resource/{id}/download',[ResourceController::class, 'handleDownloadResource']);

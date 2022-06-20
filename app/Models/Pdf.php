@@ -17,8 +17,5 @@ class Pdf extends Model
         return $this->morphOne(Resource::class, 'type');
     }
 
-    public function getFileAttribute($value)
-    {
-        return $value ? asset('files/'.$value) : null;
-    }
+  
 }

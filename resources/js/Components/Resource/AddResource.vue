@@ -118,6 +118,7 @@ import AddHtml from "../Resource/Html/AddHtml.vue";
 import AddPdf from "../Resource/Pdf/AddPdf.vue";
 import AddLink from "../Resource/Link/AddLink.vue";
 export default {
+    emits: ["resourceCreated","closeModal"],
   data() {
     return {
       show: true,

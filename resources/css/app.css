@@ -1,8 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer utilities {
-    .h-250 {
-      height: 250px;
-    }
-  }

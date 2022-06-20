@@ -83,6 +83,7 @@
 import Error from "../../Extra/Error.vue";
 import Success from "../../Extra/Success.vue";
 export default {
+  emits: ["resourceUpdated"],
   props: ["resource"],
   data() {
     return {
@@ -103,14 +104,15 @@ export default {
   },
   methods: {
     selectFile(event) {
-      this.file = event.target.files[0];Z
+      this.file = event.target.files[0];
+      Z;
     },
     updatePdf() {
       let body = new FormData();
       body.append("id", this.resource.id);
       body.append("title", this.title);
-     body.append("file", this.file);
-  
+      body.append("file", this.file);
+
       axios
         .post(`/api/resource/pdf/${this.resource.id}/update`, body)
         .then((response) => {

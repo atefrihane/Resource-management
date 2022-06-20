@@ -61,7 +61,7 @@
         text-center
         dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800
       "
-      @click="saveUrl()"
+      @click="savePdf()"
     >
       Confirm
     </button>
@@ -83,6 +83,7 @@
 import Error from "../../Extra/Error.vue";
 import Success from "../../Extra/Success.vue";
 export default {
+  emits: ["resourceCreated"],
   data() {
     return {
       title: "",
@@ -104,9 +105,10 @@ export default {
     selectFile(event) {
       this.file = event.target.files[0];
     },
-    saveUrl() {
+    savePdf() {
       let body = new FormData();
-     D
+      body.append("title", this.title);
+      body.append("file", this.file);
       axios
         .post("/api/resource/pdf/save", body)
         .then((response) => {

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pdf;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Resource extends Model
 {
@@ -14,5 +15,10 @@ class Resource extends Model
     public function type()
     {
         return $this->morphTo('type', 'resource_type', 'resource_id');
+    }
+
+    public function isPdf()
+    {
+        return $this->resource_type == Pdf::class;
     }
 }

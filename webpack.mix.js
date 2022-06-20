@@ -11,9 +11,12 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.js('resources/js/showAdminResources.js', 'public/js').vue()
- .postCss("resources/css/app.css", "public/css", [
-   require("tailwindcss"),
- ]);
+mix.js(
+  'resources/js/showAdminResources.js', 'public/js').vue()
+  .js(
+    'resources/js/showVisitorResources.js', 'public/js').vue()
+  .postCss("resources/css/app.css", "public/css", [
+    require("tailwindcss"),
+  ]);
 
- 
+

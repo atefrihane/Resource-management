@@ -106,6 +106,7 @@
 import Error from "../../Extra/Error.vue";
 import Success from "../../Extra/Success.vue";
 export default {
+  emits: ["resourceUpdated"],
   props: ["resource"],
   data() {
     return {

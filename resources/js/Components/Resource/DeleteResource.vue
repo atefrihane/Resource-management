@@ -116,6 +116,7 @@
 import Modal from "../Extra/Modal.vue";
 import Success from "../Extra/Success.vue";
 export default {
+     emits: ["resourceDeleted","closeModal"],
   props: ["id"],
   data() {
     return {
@@ -131,7 +132,7 @@ export default {
     deleteResource() {
       axios
         .delete(`/api/resource/${this.id}/delete`)
-        .then(function (response) {
+        .then( (response) => {
           // handle success
           console.log(response);
           this.success = true;

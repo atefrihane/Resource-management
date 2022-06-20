@@ -1,13 +1,35 @@
 <template>
-  <ShowAdminHtml v-if="isHtml" :resource="resource" />
+  <div
+    class="
+      bg-white
+      rounded
+      border border-green-500
+      shadow
+      mr-3
+      h-100
+      w-full
+      md:w-1/4
+      mb-5
+      overflow-hidden
+      card
+    "
+  >
+    <ShowHtml v-if="isHtml" :resource="resource" />
+    <ShowLink v-if="isLink" :resource="resource" />
+    <ShowPdf v-if="isPdf" :resource="resource" />
+  </div>
 </template>
 
 <script>
-import ShowAdminHtml from "./Html/ShowAdminHtml.vue";
+import ShowHtml from "./Html/ShowHtml.vue";
+import ShowLink from "./Link/ShowLink.vue";
+import ShowPdf from "./Pdf/ShowPdf.vue";
 export default {
   props: ["resource"],
   components: {
-    ShowAdminHtml,
+    ShowHtml,
+    ShowLink,
+    ShowPdf,
   },
   computed: {
     isHtml() {

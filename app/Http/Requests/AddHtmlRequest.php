@@ -25,7 +25,7 @@ class AddHtmlRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:200',
+            'title' => 'required|unique:resources,title|max:200',
             'description' => 'required|max:500',
             'snippet' => 'required|max:1000'
         ];

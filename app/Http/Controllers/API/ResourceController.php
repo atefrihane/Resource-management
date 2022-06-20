@@ -15,6 +15,7 @@ use App\Http\Requests\AddLinkRequest;
 use App\Http\Requests\EditPdfRequest;
 use App\Http\Requests\EditHtmlRequest;
 use App\Http\Requests\EditLinkRequest;
+use App\Http\Requests\DownloadResourceRequest;
 
 class ResourceController extends Controller
 {
@@ -171,5 +172,22 @@ class ResourceController extends Controller
         return response()->json([
             'status' => true
         ], 200);
+    }
+
+    public function handleDownloadResource(DownloadResourceRequest $request)
+    {
+        $validatedData = $request->validated();
+
+        $checkResource = Resource::find($validatedData['id']);
+        if (!$checkResource->isPdf()) {
+            return response()->json([
+                "errors" => [
+                    "resource" => ["The resource must be a file of type: PDF"]
+                ]
+            ], 422);
+        }
+        $path = public_path('files/' . $checkResource->type->file);
+       
+        return response()->download($path);
     }
 }

@@ -26,7 +26,7 @@ class AddLinkRequest extends FormRequest
     {
 
         return [
-            'title' => 'required|max:200',
+            'title' => 'required|unique:resources,title|max:200',
             'url' => 'required|url',
             'open_tab' => 'required|boolean'
         ];

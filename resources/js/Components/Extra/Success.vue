@@ -84,6 +84,7 @@
 <script>
 import Modal from "../Extra/Modal.vue";
 export default {
+    emits: ["closeModal","success"],
   props: ["successMessage"],
   components: {
     Modal,

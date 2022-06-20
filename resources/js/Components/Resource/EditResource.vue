@@ -93,6 +93,7 @@ import EditHtml from "../Resource/Html/EditHtml.vue";
 import EditPdf from "../Resource/Pdf/EditPdf.vue";
 import EditLink from "../Resource/Link/EditLink.vue";
 export default {
+     emits: ["resourceUpdated"],
   props: ["resource"],
   data() {
     return {

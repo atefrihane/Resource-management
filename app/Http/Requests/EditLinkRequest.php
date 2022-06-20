@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditLinkRequest extends FormRequest
@@ -25,7 +26,7 @@ class EditLinkRequest extends FormRequest
     {
         return [
             'id' => "required|exists:resources,id",
-            'title' => 'required|max:200',
+            'title' => ['required', Rule::unique('resources')->ignore($this->id), 'max:200'],
             'url' => 'required|url',
             'open_tab' => 'required|boolean'
         ];

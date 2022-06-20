@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditPdfRequest extends FormRequest
+class DownloadResourceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +23,12 @@ class EditPdfRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'id' => "required|exists:resources,id",
-            'title' => ['required', Rule::unique('resources')->ignore($this->id), 'max:200'],
-            'file' => "nullable|mimes:pdf"
+            'id' => 'required|exists:resources,id'
         ];
     }
 
-    protected function prepareForValidation() 
+    protected function prepareForValidation()
     {
         $this->merge(['id' => $this->route('id')]);
     }

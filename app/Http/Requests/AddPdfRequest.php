@@ -25,7 +25,7 @@ class AddPdfRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:200',
+            'title' => 'required|unique:resources,title|max:200',
             'file' => "required|mimes:pdf"
 
         ];

@@ -1,21 +1,9 @@
 <template>
-  <div
-    class="
-      bg-white
-      rounded
-      border border-green-500
-      shadow
-      mr-3
-      h-100
-      w-1/4
-      overflow-hidden
-    "
-    style="height: 250px"
-  >
+ 
     <div class="flex flex-col h-full">
       <div class="p-4">
         <div class="flex justify-between items-center mb-4">
-          <h1 class="text-center text-2xl">{{ resource.title }}</h1>
+          <h1 class="text-center text-2xl" alt="">{{title }}</h1>
           <span
             class="
               bg-blue-100
@@ -27,17 +15,18 @@
               rounded
               dark:bg-blue-200 dark:text-blue-800
             "
-            >HTML</span
+            >Link</span
           >
         </div>
 
-        <p>{{ resource.type.description }}</p>
+        <p>This is a link resource.</p>
       </div>
 
       <div class="mt-auto">
         <div class="bg-red-900 h-px w-100 mb-2"></div>
         <div class="flex justify-center pb-2">
-          <button
+          <a
+            :href="resource.type.url"
             class="
               flex
               mx-auto
@@ -53,19 +42,28 @@
               text-center
               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
             "
-            type="button"
+            :target="resource.type.open_tab ? '_blank' : ''"
           >
-            Copy
-          </button>
+            Visit</a
+          >
         </div>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script>
 export default {
   props: ["resource"],
+
+   computed: {
+    title() {
+      return this.resource.title.length > 5
+        ? this.resource.title.substr(0, 5) + "..."
+        : this.resource.title;
+    },
+
+  },
 };
 </script>
 
