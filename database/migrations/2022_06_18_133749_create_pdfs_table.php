@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pdfs', function (Blueprint $table) {
             $table->id();
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

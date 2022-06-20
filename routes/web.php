@@ -19,3 +19,6 @@ Route::get('/', function () {
 });
 Route::view('/home', 'resource.showVisitorResources');
 Route::view('/admin', 'resource.showAdminResources');
+
+
+

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Resource;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pdf extends Model
@@ -14,5 +15,10 @@ class Pdf extends Model
     public function resource()
     {
         return $this->morphOne(Resource::class, 'type');
+    }
+
+    public function getFileAttribute($value)
+    {
+        return $value ? asset('files/'.$value) : null;
     }
 }

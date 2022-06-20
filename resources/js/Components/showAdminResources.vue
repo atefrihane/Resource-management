@@ -81,6 +81,7 @@
                     hover:underline
                     mr-2
                   "
+                  @click="resourceToUpdate = resource"
                   >Edit</a
                 >
                 <a
@@ -122,6 +123,13 @@
       v-on:resourceCreated="resourceCreated()"
     />
 
+    <ShowUpdateResource
+      v-if="resourceToUpdate"
+      :resource="resourceToUpdate"
+      v-on:closeModal="resourceToUpdate = null"
+      v-on:resourceUpdated="resourceUpdated()"
+    />
+
     <ShowDeleteResource
       v-if="resourceToDelete"
       :id="resourceToDelete"
@@ -133,6 +141,7 @@
 <script>
 import LaravelVuePagination from "laravel-vue-pagination";
 import ShowAddResource from "./Resource/AddResource.vue";
+import ShowUpdateResource from "./Resource/EditResource.vue";
 import ShowDeleteResource from "./Resource/DeleteResource.vue";
 import ResourceTile from "./Resource/ResourceTile.vue";
 
@@ -142,6 +151,7 @@ export default {
   },
   components: {
     ShowAddResource,
+    ShowUpdateResource,
     ResourceTile,
     Pagination: LaravelVuePagination,
     ShowDeleteResource,
@@ -149,10 +159,10 @@ export default {
   data() {
     return {
       showAddResource: false,
-      showEditResource: false,
 
       resources: {},
       resourceToDelete: null,
+      resourceToUpdate: null,
     };
   },
   methods: {
@@ -171,6 +181,12 @@ export default {
     },
     resourceCreated() {
       this.showAddResource = false;
+      this.fetchResources();
+    },
+
+    resourceUpdated() {
+     
+      this.resourceToUpdate = null;
       this.fetchResources();
     },
 

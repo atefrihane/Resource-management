@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Pdf;
 use App\Models\Html;
+use App\Models\Link;
 use App\Models\Resource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddPdfRequest;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\AddHtmlRequest;
 use App\Http\Requests\AddLinkRequest;
-use App\Http\Requests\AddPdfRequest;
-use App\Models\Link;
-use App\Models\Pdf;
+use App\Http\Requests\EditPdfRequest;
+use App\Http\Requests\EditHtmlRequest;
+use App\Http\Requests\EditLinkRequest;
 
 class ResourceController extends Controller
 {
@@ -94,6 +98,76 @@ class ResourceController extends Controller
 
         $checkResource->type()->delete();
         $checkResource->delete();
+        return response()->json([
+            'status' => true
+        ], 200);
+    }
+
+    public function handleUpdateHtml(EditHtmlRequest $request)
+    {
+        $validatedData = $request->validated();
+        $resource = Resource::with('type')->find($validatedData['id']);
+        $resource->update([
+            'title' => $validatedData['title']
+        ]);
+
+        $resource->type()->update([
+            'description' => $validatedData['description'],
+            'snippet' => $validatedData['snippet']
+        ]);
+
+        return response()->json([
+            'status' => true
+        ], 200);
+    }
+
+    public function handleUpdateLink(EditLinkRequest $request)
+    {
+
+        $validatedData = $request->validated();
+        $resource = Resource::with('type')->find($validatedData['id']);
+        $resource->update([
+            'title' => $validatedData['title']
+        ]);
+
+        $resource->type()->update([
+            'url' => $validatedData['url'],
+            'open_tab' => $validatedData['open_tab']
+        ]);
+
+        return response()->json([
+            'status' => true
+        ], 200);
+    }
+
+    public function handleUpdatePdf(EditPdfRequest $request)
+    {
+
+        $validatedData = $request->validated();
+
+        $resource = Resource::with('type')->find($validatedData['id']);
+
+        $fileName = null;
+        if ($validatedData['file']) {
+
+
+            $file = $validatedData['file'];
+            $fileName = time() . '.' . $file->extension();
+
+
+
+            $file->move(public_path('files'), $fileName);
+            File::delete(public_path('files/' . $resource->type->file));
+        }
+
+        $resource->update([
+            'title' => $validatedData['title']
+        ]);
+
+        $resource->type()->update([
+            'file' => $fileName ? $fileName : $request->type?->file,
+
+        ]);
         return response()->json([
             'status' => true
         ], 200);

@@ -21,4 +21,8 @@ Route::post('/resource/html/save', [ResourceController::class, 'handleSaveHtml']
 Route::post('/resource/pdf/save', [ResourceController::class, 'handleSavePdf']);
 Route::post('/resource/link/save', [ResourceController::class, 'handleSaveLink']);
 
+Route::put('/resource/html/{id}/update', [ResourceController::class, 'handleUpdateHtml']);
+Route::post('/resource/pdf/{id}/update', [ResourceController::class, 'handleUpdatePdf']);
+Route::put('/resource/link/{id}/update', [ResourceController::class, 'handleUpdateLink']);
+
 Route::delete('/resource/{id}/delete', [ResourceController::class, 'handleDeleteResource']);

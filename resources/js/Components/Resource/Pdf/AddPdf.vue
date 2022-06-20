@@ -106,8 +106,7 @@ export default {
     },
     saveUrl() {
       let body = new FormData();
-      body.append("title", this.title);
-      body.append("file", this.file);
+     D
       axios
         .post("/api/resource/pdf/save", body)
         .then((response) => {
